@@ -10,8 +10,15 @@ import SwiftUI
 struct CandidatesHeaderView: View {
     var body: some View {
         HStack{
+            EditButton()
+            Spacer()
+            Text("Candidats")
+                .font(.title2)
+            Spacer()
+            Image(systemName: "star")
             
         }
+        .padding()
     }
 }
 

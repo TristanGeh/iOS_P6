@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Candidate: Identifiable, Hashable {
-    let id = UUID()
+struct Candidate: Identifiable, Hashable, Codable {
+    let id: UUID
     let firstName: String
     let lastName: String
     let email: String

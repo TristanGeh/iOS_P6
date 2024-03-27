@@ -8,19 +8,16 @@
 import SwiftUI
 
 struct CandidatesListView: View {
-    @State var candidates = ["Jean-Pierre P", "Jean-Paul B", "Jean-Claude VD","Jean-Philippe P"]
     
     var body: some View {
-        NavigationStack{
-            List(candidates, id: \.self) { candidate in
-                NavigationLink(candidate, value: candidate)
+            List(candidates, id: \.id) { candidate in
+                NavigationLink(candidate.firstName + " " + candidate.lastName, value: candidate)
             }
             .navigationDestination(for: Candidate.self ){ candidate in
-                CandidateDetailView()
+                CandidateDetailView(candidate: candidate)
             }
         }
     }
-}
 
 #Preview {
     CandidatesListView()

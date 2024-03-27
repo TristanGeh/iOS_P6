@@ -9,10 +9,13 @@ import SwiftUI
 
 struct CandidatesView: View {
     var body: some View {
-        VStack{
-            HStack{
-                
+        NavigationStack{
+            VStack{
+                CandidatesHeaderView()
+                CandidatesSearchBarView()
+                CandidatesListView()
             }
+            .background(Color.white)
         }
     }
 }

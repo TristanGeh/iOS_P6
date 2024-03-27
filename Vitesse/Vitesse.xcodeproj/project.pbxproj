@@ -18,6 +18,9 @@
 		E083BC3C2BAC997200D6BAD7 /* CandidatesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC3B2BAC997200D6BAD7 /* CandidatesListView.swift */; };
 		E083BC3E2BAC9C2A00D6BAD7 /* CandidateDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC3D2BAC9C2A00D6BAD7 /* CandidateDetailView.swift */; };
 		E083BC432BAC9F3500D6BAD7 /* CandidatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */; };
+		E083BC462BB1964900D6BAD7 /* CandidatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC452BB1964900D6BAD7 /* CandidatesModel.swift */; };
+		E083BC492BB1975200D6BAD7 /* candidatesData.json in Resources */ = {isa = PBXBuildFile; fileRef = E083BC482BB1975200D6BAD7 /* candidatesData.json */; };
+		E083BC4C2BB46BC800D6BAD7 /* CandidateLinkedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		E083BC3B2BAC997200D6BAD7 /* CandidatesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesListView.swift; sourceTree = "<group>"; };
 		E083BC3D2BAC9C2A00D6BAD7 /* CandidateDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailView.swift; sourceTree = "<group>"; };
 		E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesViewModel.swift; sourceTree = "<group>"; };
+		E083BC452BB1964900D6BAD7 /* CandidatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesModel.swift; sourceTree = "<group>"; };
+		E083BC482BB1975200D6BAD7 /* candidatesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = candidatesData.json; sourceTree = "<group>"; };
+		E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateLinkedInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,8 @@
 		E083BC202BAAF92C00D6BAD7 /* Vitesse */ = {
 			isa = PBXGroup;
 			children = (
+				E083BC472BB1968700D6BAD7 /* Ressources */,
+				E083BC442BB1963400D6BAD7 /* Models */,
 				E083BC212BAAF92C00D6BAD7 /* VitesseApp.swift */,
 				E083BC3F2BAC9D3300D6BAD7 /* ViewModel */,
 				E083BC312BAAFD8C00D6BAD7 /* Views */,
@@ -89,6 +97,7 @@
 				E083BC322BAC439500D6BAD7 /* RegisterView.swift */,
 				E083BC342BAC97EC00D6BAD7 /* CandidatesView.swift */,
 				E083BC3D2BAC9C2A00D6BAD7 /* CandidateDetailView.swift */,
+				E083BC4A2BB46B6900D6BAD7 /* CandidateDetailSpareViews */,
 				E083BC362BAC986600D6BAD7 /* CandidatesSpareViews */,
 			);
 			path = Views;
@@ -110,6 +119,30 @@
 				E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E083BC442BB1963400D6BAD7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E083BC452BB1964900D6BAD7 /* CandidatesModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E083BC472BB1968700D6BAD7 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				E083BC482BB1975200D6BAD7 /* candidatesData.json */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		E083BC4A2BB46B6900D6BAD7 /* CandidateDetailSpareViews */ = {
+			isa = PBXGroup;
+			children = (
+				E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */,
+			);
+			path = CandidateDetailSpareViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +205,7 @@
 			files = (
 				E083BC292BAAF92E00D6BAD7 /* Preview Assets.xcassets in Resources */,
 				E083BC262BAAF92E00D6BAD7 /* Assets.xcassets in Resources */,
+				E083BC492BB1975200D6BAD7 /* candidatesData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +221,8 @@
 				E083BC302BAAF95900D6BAD7 /* LoginView.swift in Sources */,
 				E083BC3A2BAC995A00D6BAD7 /* CandidatesSearchBarView.swift in Sources */,
 				E083BC382BAC989A00D6BAD7 /* CandidatesHeaderView.swift in Sources */,
+				E083BC462BB1964900D6BAD7 /* CandidatesModel.swift in Sources */,
+				E083BC4C2BB46BC800D6BAD7 /* CandidateLinkedInView.swift in Sources */,
 				E083BC352BAC97EC00D6BAD7 /* CandidatesView.swift in Sources */,
 				E083BC222BAAF92C00D6BAD7 /* VitesseApp.swift in Sources */,
 				E083BC432BAC9F3500D6BAD7 /* CandidatesViewModel.swift in Sources */,

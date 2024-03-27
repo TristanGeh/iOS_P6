@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct CandidatesSearchBarView: View {
+   @State var search = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .padding(7)
+            TextField("Search", text: $search)
+        }
+        .border(Color.black, width: 2)
+        .cornerRadius(6.0)
+        .padding()
     }
 }
 
