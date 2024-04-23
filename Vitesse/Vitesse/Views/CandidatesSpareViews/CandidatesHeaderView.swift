@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CandidatesHeaderView: View {
+    @Binding var showFavorites: Bool
+    
     var body: some View {
         HStack{
             EditButton()
@@ -15,13 +17,15 @@ struct CandidatesHeaderView: View {
             Text("Candidats")
                 .font(.title2)
             Spacer()
-            Image(systemName: "star")
+            
+            Button(action: {
+                showFavorites.toggle()
+            }) {
+                Image(systemName: showFavorites ? "star.fill" : "star")
+                    .foregroundColor(showFavorites ? .yellow : .black)
+            }
             
         }
         .padding()
     }
-}
-
-#Preview {
-    CandidatesHeaderView()
 }

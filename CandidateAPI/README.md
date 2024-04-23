@@ -50,10 +50,7 @@ Exemple:
 }
 ```
 
-Body Response:
-
-- `token`: `String`
-- `isAdmin`: `Bool`
+/['=']
 
 Exemple:
 

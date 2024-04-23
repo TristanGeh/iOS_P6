@@ -67,6 +67,7 @@ struct LoginView: View {
                         .navigationDestination(isPresented: $showRegister){  RegisterView()
                         }
                         .navigationBarTitle("Login", displayMode: .inline)
+                        
                         .navigationBarHidden(true)
                         
                         .padding(.horizontal, 100)

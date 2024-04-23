@@ -15,12 +15,17 @@
 		E083BC352BAC97EC00D6BAD7 /* CandidatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC342BAC97EC00D6BAD7 /* CandidatesView.swift */; };
 		E083BC382BAC989A00D6BAD7 /* CandidatesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC372BAC989A00D6BAD7 /* CandidatesHeaderView.swift */; };
 		E083BC3A2BAC995A00D6BAD7 /* CandidatesSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC392BAC995A00D6BAD7 /* CandidatesSearchBarView.swift */; };
-		E083BC3C2BAC997200D6BAD7 /* CandidatesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC3B2BAC997200D6BAD7 /* CandidatesListView.swift */; };
 		E083BC3E2BAC9C2A00D6BAD7 /* CandidateDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC3D2BAC9C2A00D6BAD7 /* CandidateDetailView.swift */; };
 		E083BC432BAC9F3500D6BAD7 /* CandidatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */; };
 		E083BC462BB1964900D6BAD7 /* CandidatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC452BB1964900D6BAD7 /* CandidatesModel.swift */; };
 		E083BC492BB1975200D6BAD7 /* candidatesData.json in Resources */ = {isa = PBXBuildFile; fileRef = E083BC482BB1975200D6BAD7 /* candidatesData.json */; };
 		E083BC4C2BB46BC800D6BAD7 /* CandidateLinkedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */; };
+		E0B59CB82BB9AB0900471B1F /* CandidateTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B59CB72BB9AB0900471B1F /* CandidateTileView.swift */; };
+		E0B59CBB2BC8343E00471B1F /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B59CBA2BC8343D00471B1F /* APICalls.swift */; };
+		E0B59CBD2BC8345B00471B1F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B59CBC2BC8345B00471B1F /* APIService.swift */; };
+		E0B67A272BD80F71005EE54F /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B67A262BD80F71005EE54F /* RegisterModel.swift */; };
+		E0B67A292BD810A6005EE54F /* APICandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B67A282BD810A6005EE54F /* APICandidate.swift */; };
+		E0F242602BCD33CC00EF77C7 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F2425F2BCD33CC00EF77C7 /* APIUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,12 +38,17 @@
 		E083BC342BAC97EC00D6BAD7 /* CandidatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesView.swift; sourceTree = "<group>"; };
 		E083BC372BAC989A00D6BAD7 /* CandidatesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesHeaderView.swift; sourceTree = "<group>"; };
 		E083BC392BAC995A00D6BAD7 /* CandidatesSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesSearchBarView.swift; sourceTree = "<group>"; };
-		E083BC3B2BAC997200D6BAD7 /* CandidatesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesListView.swift; sourceTree = "<group>"; };
 		E083BC3D2BAC9C2A00D6BAD7 /* CandidateDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailView.swift; sourceTree = "<group>"; };
 		E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesViewModel.swift; sourceTree = "<group>"; };
 		E083BC452BB1964900D6BAD7 /* CandidatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesModel.swift; sourceTree = "<group>"; };
 		E083BC482BB1975200D6BAD7 /* candidatesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = candidatesData.json; sourceTree = "<group>"; };
 		E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateLinkedInView.swift; sourceTree = "<group>"; };
+		E0B59CB72BB9AB0900471B1F /* CandidateTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateTileView.swift; sourceTree = "<group>"; };
+		E0B59CBA2BC8343D00471B1F /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
+		E0B59CBC2BC8345B00471B1F /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		E0B67A262BD80F71005EE54F /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		E0B67A282BD810A6005EE54F /* APICandidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICandidate.swift; sourceTree = "<group>"; };
+		E0F2425F2BCD33CC00EF77C7 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,10 +81,11 @@
 		E083BC202BAAF92C00D6BAD7 /* Vitesse */ = {
 			isa = PBXGroup;
 			children = (
+				E0B59CB92BC82D4D00471B1F /* API */,
 				E083BC472BB1968700D6BAD7 /* Ressources */,
 				E083BC442BB1963400D6BAD7 /* Models */,
 				E083BC212BAAF92C00D6BAD7 /* VitesseApp.swift */,
-				E083BC3F2BAC9D3300D6BAD7 /* ViewModel */,
+				E083BC3F2BAC9D3300D6BAD7 /* ViewModels */,
 				E083BC312BAAFD8C00D6BAD7 /* Views */,
 				E083BC252BAAF92E00D6BAD7 /* Assets.xcassets */,
 				E083BC272BAAF92E00D6BAD7 /* Preview Content */,
@@ -107,24 +118,25 @@
 			isa = PBXGroup;
 			children = (
 				E083BC372BAC989A00D6BAD7 /* CandidatesHeaderView.swift */,
+				E0B59CB72BB9AB0900471B1F /* CandidateTileView.swift */,
 				E083BC392BAC995A00D6BAD7 /* CandidatesSearchBarView.swift */,
-				E083BC3B2BAC997200D6BAD7 /* CandidatesListView.swift */,
 			);
 			path = CandidatesSpareViews;
 			sourceTree = "<group>";
 		};
-		E083BC3F2BAC9D3300D6BAD7 /* ViewModel */ = {
+		E083BC3F2BAC9D3300D6BAD7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		E083BC442BB1963400D6BAD7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E083BC452BB1964900D6BAD7 /* CandidatesModel.swift */,
+				E0B67A262BD80F71005EE54F /* RegisterModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,6 +155,17 @@
 				E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */,
 			);
 			path = CandidateDetailSpareViews;
+			sourceTree = "<group>";
+		};
+		E0B59CB92BC82D4D00471B1F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E0B59CBA2BC8343D00471B1F /* APICalls.swift */,
+				E0F2425F2BCD33CC00EF77C7 /* APIUser.swift */,
+				E0B67A282BD810A6005EE54F /* APICandidate.swift */,
+				E0B59CBC2BC8345B00471B1F /* APIService.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,14 +239,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B59CBD2BC8345B00471B1F /* APIService.swift in Sources */,
 				E083BC332BAC439500D6BAD7 /* RegisterView.swift in Sources */,
-				E083BC3C2BAC997200D6BAD7 /* CandidatesListView.swift in Sources */,
 				E083BC302BAAF95900D6BAD7 /* LoginView.swift in Sources */,
+				E0B59CBB2BC8343E00471B1F /* APICalls.swift in Sources */,
+				E0B67A292BD810A6005EE54F /* APICandidate.swift in Sources */,
+				E0B59CB82BB9AB0900471B1F /* CandidateTileView.swift in Sources */,
 				E083BC3A2BAC995A00D6BAD7 /* CandidatesSearchBarView.swift in Sources */,
 				E083BC382BAC989A00D6BAD7 /* CandidatesHeaderView.swift in Sources */,
+				E0F242602BCD33CC00EF77C7 /* APIUser.swift in Sources */,
 				E083BC462BB1964900D6BAD7 /* CandidatesModel.swift in Sources */,
 				E083BC4C2BB46BC800D6BAD7 /* CandidateLinkedInView.swift in Sources */,
 				E083BC352BAC97EC00D6BAD7 /* CandidatesView.swift in Sources */,
+				E0B67A272BD80F71005EE54F /* RegisterModel.swift in Sources */,
 				E083BC222BAAF92C00D6BAD7 /* VitesseApp.swift in Sources */,
 				E083BC432BAC9F3500D6BAD7 /* CandidatesViewModel.swift in Sources */,
 				E083BC3E2BAC9C2A00D6BAD7 /* CandidateDetailView.swift in Sources */,

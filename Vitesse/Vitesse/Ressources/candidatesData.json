@@ -1,43 +1,82 @@
-
 [
-  {
-    "id": "5662b03a-820e-4428-a301-8ac4da8ed0ae",
-    "firstName": "Jean-Pierre",
-    "lastName": "P",
-    "email": "jeanpierre@example.com",
-    "phone": "0123456789",
-    "linkedinURL": "https://www.linkedin.com/in/jeanpierre",
-    "note": "TLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "isFavorite": true
-  },
-  {
-    "id": "4613b9ac-7040-46ec-8b37-d721e4231b95",
-    "firstName": "Jean-Paul",
-    "lastName": "B",
-    "email": "jeanpaul@example.com",
-    "phone": "9876543210",
-    "linkedinURL": "https://www.linkedin.com/in/jeanpaul",
-    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "isFavorite": false
-  },
-  {
-    "id": "2a0feb8e-6d9a-427d-b8c0-0e2c4c52046c",
-    "firstName": "Jean-Claude",
-    "lastName": "VD",
-    "email": "jeanclaude@example.com",
-    "phone": "0609040290",
-    "linkedinURL": "https://www.linkedin.com/in/jeanclaude",
-    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "isFavorite": true
-  },
-  {
-    "id": "2c77a063-e22b-4e5d-bc0b-6d101bdfa3ea",
-    "firstName": "Jean-Philippe",
-    "lastName": "P",
-    "email": "jeanphilippe@example.com",
-    "phone": "1234567890",
-    "linkedinURL": "https://www.linkedin.com/in/jeanphilippe",
-    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "isFavorite": false
-  }
-]
+    {
+        "id": "5662b03a-820e-4428-a301-8ac4da8ed0ae",
+        "firstName": "Jean-Pierre",
+        "lastName": "P",
+        "email": "jeanpierre@example.com",
+        "phone": "0123456789",
+        "linkedinURL": "https://www.linkedin.com/in/jeanpierre",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": true
+    },
+    {
+        "id": "4613b9ac-7040-46ec-8b37-d721e4231b95",
+        "firstName": "Jean-Paul",
+        "lastName": "B",
+        "email": "jeanpaul@example.com",
+        "phone": "9876543210",
+        "linkedinURL": "https://www.linkedin.com/in/jeanpaul",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": false
+    },
+    {
+        "id": "2a0feb8e-6d9a-427d-b8c0-0e2c4c52046c",
+        "firstName": "Jean-Claude",
+        "lastName": "VD",
+        "email": "jeanclaude@example.com",
+        "phone": "0609040290",
+        "linkedinURL": "https://www.linkedin.com/in/jeanclaude",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": true
+    },
+    {
+        "id": "2c77a063-e22b-4e5d-bc0b-6d101bdfa3ea",
+        "firstName": "Jean-Philippe",
+        "lastName": "P",
+        "email": "jeanphilippe@example.com",
+        "phone": "1234567890",
+        "linkedinURL": "https://www.linkedin.com/in/jeanphilippe",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": false
+    },
+    {
+        "id": "3f88f953-3cfd-435a-85d3-9a335004d3b1",
+        "firstName": "Marie",
+        "lastName": "C",
+        "email": "mariec@example.com",
+        "phone": "0987654321",
+        "linkedinURL": "https://www.linkedin.com/in/mariec",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": true
+    },
+    {
+        "id": "4a89b3d4-9665-4e1f-9f2f-52c1a86a2f44",
+        "firstName": "Luc",
+        "lastName": "D",
+        "email": "lucd@example.com",
+        "phone": "0123456789",
+        "linkedinURL": "https://www.linkedin.com/in/lucd",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": false
+    },
+    {
+        "id": "5b7a8c7d-441b-411b-8e90-faef604e4926",
+        "firstName": "Sophie",
+        "lastName": "E",
+        "email": "sophiee@example.com",
+        "phone": "9876543210",
+        "linkedinURL": "https://www.linkedin.com/in/sophiee",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": true
+    },
+    {
+        "id": "6c8a9f8d-c124-4a1a-bf82-7e8230a97c80",
+        "firstName": "Claude",
+        "lastName": "F",
+        "email": "claudef@example.com",
+        "phone": "0609080705",
+        "linkedinURL": "https://www.linkedin.com/in/claudef",
+        "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "isFavorite": false
+    }
+    ]

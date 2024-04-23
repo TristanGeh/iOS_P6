@@ -11,9 +11,8 @@ struct CandidateLinkedInView: View {
     var candidate: Candidate
     
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 32) {
             Text("LinkedIn")
-            Spacer()
             if let linkedinURL = candidate.linkedinURL, let url = URL(string: linkedinURL){
                 Link("Go on LinkedIn",destination: url)
                     .foregroundColor(.white)

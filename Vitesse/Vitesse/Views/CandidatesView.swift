@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct CandidatesView: View {
+    @StateObject var viewModel = CandidatesViewModel()
+    
     var body: some View {
         NavigationStack{
-            VStack{
-                CandidatesHeaderView()
-                CandidatesSearchBarView()
-                CandidatesListView()
+            VStack(alignment: .leading){
+                CandidatesHeaderView(showFavorites: $viewModel.showFavorites)
+                CandidatesSearchBarView(searchText: $viewModel.searchText)
+                ScrollView{
+                VStack(alignment: .leading) {
+                    Text("Candidats :")
+                    ForEach(viewModel.searchResults, id: \.id) { candidate in
+                            CandidateTileView(candidate: candidate)
+                                .padding(.vertical,8)
+                        }
+                    }
+                    .padding()
+                }
             }
-            .background(Color.white)
         }
     }
 }

@@ -11,29 +11,42 @@ struct CandidateDetailView: View {
     var candidate: Candidate
     
     var body: some View {
-        VStack{
+        VStack(alignment: .leading, spacing: 28){
             HStack {
                 Text(candidate.firstName + " " + candidate.lastName)
+                    .font(.title2)
+                Spacer()
                 Image(systemName: candidate.isFavorite ? "star.fill" : "star")
             }
-            HStack {
+            VStack(alignment:.leading, spacing: 12) {
                 Text("Phone")
                 Text("\(candidate.phone ?? "Not available")")
             }
-            HStack{
+            VStack(alignment:.leading, spacing: 12){
                 Text("Email")
                 Text("\(candidate.email)")
             }
             CandidateLinkedInView(candidate: candidate)
-            VStack(alignment:.leading){
+            VStack(alignment:.leading, spacing: 12){
                 Text("Note")
-                Text("\(candidate.note ?? "Not available")")
-                    .lineLimit(nil)
-                    .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
-                    
-                
+                VStack {
+                    Text("\(candidate.note ?? "Not available")")
+                        .lineLimit(nil)
+                        .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal,10)
+                        .padding(.vertical, 12)
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.black, lineWidth: 1)
+                )
             }
         }
+        .padding(.horizontal, 25)
+        .toolbar{
+            EditButton()
+        }
+        Spacer()
     }
 }
 

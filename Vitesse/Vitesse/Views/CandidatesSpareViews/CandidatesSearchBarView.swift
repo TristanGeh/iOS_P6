@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct CandidatesSearchBarView: View {
-   @State var search = ""
+    @Binding var searchText: String
     
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .padding(7)
-            TextField("Search", text: $search)
+            TextField("Search", text: $searchText)
         }
-        .border(Color.black, width: 2)
-        .cornerRadius(6.0)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(.black, lineWidth: 1)
+        )
         .padding()
     }
-}
-
-#Preview {
-    CandidatesSearchBarView()
 }
