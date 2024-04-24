@@ -12,6 +12,13 @@ class APIService {
     
     let baseURL = URL(string: "http://127.0.0.1:8080")!
     static let shared = APIService()
+    private(set) var token: String?
+    private(set) var isAdmin: Bool?
+    
+    func updateSession(token: String?, isAdmin: Bool?){
+        self.token = token
+        self.isAdmin = isAdmin
+    }
     
     enum EndPoint {
         case user(UserEndpoint)
@@ -22,7 +29,7 @@ class APIService {
             case .user(let endpoint):
                 return "user/" + endpoint.rawValue
             case .candidate(let endpoint):
-                return "candidate/" + endpoint.rawValue
+                return "candidate/" + endpoint.path
             }
         }
     }
@@ -33,10 +40,21 @@ class APIService {
         case register = "register"
     }
     
-    enum CandidateEndpoint: String {
-        case candidateDetail = ":candidateId"
-        case base = ""
-        case favorite = ":candidateId/favorite"
+    enum CandidateEndpoint {
+        case base
+        case detail(String)
+        case favorite(String)
+
+        var path: String {
+            switch self {
+            case .base:
+                return "candidates"
+            case .detail(let id):
+                return "\(id)"
+            case .favorite(let id):
+                return "\(id)/favorite"
+            }
+        }
     }
     
     enum HTTPMethod: String {
@@ -46,11 +64,16 @@ class APIService {
         case delete = "DELETE"
     }
     
-    func createRequest(method: HTTPMethod, endPoint: EndPoint, headers: [String: String]? = nil, body: [String: String]? = nil, completion: @escaping (Result<Data, Error>) -> Void) {
+    func createRequest(method: HTTPMethod, endPoint: EndPoint, headers: [String: String]? = nil, includeToken: Bool = false, body: [String: Any]? = nil, completion: @escaping (Result<Data, Error>) -> Void) {
         let url = baseURL.appendingPathComponent(endPoint.path)
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        
+        if includeToken, let token = token {
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+        
         if let headers = headers {
             request.allHTTPHeaderFields = headers
         }
@@ -97,6 +120,4 @@ class APIService {
                 return .failure(NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorBody]))
             }
         }
-    
-    
 }

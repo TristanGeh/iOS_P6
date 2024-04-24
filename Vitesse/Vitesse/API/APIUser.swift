@@ -8,7 +8,7 @@
 import Foundation
 
 class APIUser {
-    func login(email: String, password: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
+    func login(email: String, password: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let parameters = ["email": email, "password": password]
         
         APIService.shared.createRequest(method: .post, endPoint: .user(.authentification), headers: ["Content-Type" : "application/json"], body: parameters) { result in
@@ -16,7 +16,8 @@ class APIUser {
             case .success(let data):
                 do {
                     let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-                    completion(.success(loginResponse))
+                    APIService.shared.updateSession(token: loginResponse.token, isAdmin: loginResponse.isAdmin)
+                    completion(.success(true))
                 } catch {
                     completion(.failure(error))
                 }
