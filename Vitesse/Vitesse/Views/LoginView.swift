@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var username = ""
-    @State var password = ""
+    @ObservedObject var viewmodel = LoginViewModel()
     @State var showRegister = false
+    
     
     let gradientStart = Color(red: 1/255, green: 152/255, blue: 117/255)
     let gradientEnd = Color(red: 221/255, green: 221/255, blue: 221/255).opacity(0.0)
     
-    init() {
-        UINavigationBar.appearance().tintColor = .white
-    }
+    init(viewmodel: LoginViewModel) {
+            self.viewmodel = viewmodel
+            UINavigationBar.appearance().tintColor = .white
+        }
     
     var body: some View {
         
@@ -30,13 +31,13 @@ struct LoginView: View {
                     Image("Logo")
                     VStack(spacing: 25){
                         VStack{
-                            TextField("Email/Username", text: $username)
+                            TextField("Email/Username", text: $viewmodel.username)
                                 .padding()
                                 .background(Color.white)
                                 .disableAutocorrection(true)
                                 .autocapitalization(.none)
                                 .cornerRadius(10)
-                            SecureField("Password", text: $password)
+                            SecureField("Password", text: $viewmodel.password)
                                 .padding()
                                 .background(Color.white)
                                 .disableAutocorrection(true)
@@ -45,7 +46,9 @@ struct LoginView: View {
                         }
                         .padding(.horizontal,40)
                         VStack(spacing: 10){
-                            Button(action: {}, label: {
+                            Button(action: {
+                                viewmodel.performLogin()
+                            }, label: {
                                 Text("Sign in")
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity)
@@ -79,5 +82,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(viewmodel: LoginViewModel())
 }

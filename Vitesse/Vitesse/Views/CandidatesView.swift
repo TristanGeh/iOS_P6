@@ -16,15 +16,18 @@ struct CandidatesView: View {
                 CandidatesHeaderView(showFavorites: $viewModel.showFavorites)
                 CandidatesSearchBarView(searchText: $viewModel.searchText)
                 ScrollView{
-                VStack(alignment: .leading) {
-                    Text("Candidats :")
-                    ForEach(viewModel.searchResults, id: \.id) { candidate in
+                    VStack(alignment: .leading) {
+                        Text("Candidats :")
+                        ForEach(viewModel.searchResults, id: \.id) { candidate in
                             CandidateTileView(candidate: candidate)
                                 .padding(.vertical,8)
                         }
                     }
                     .padding()
                 }
+            }
+            .onAppear {
+                viewModel.loadCandidates()
             }
         }
     }

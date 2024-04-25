@@ -29,7 +29,7 @@ class APIService {
             case .user(let endpoint):
                 return "user/" + endpoint.rawValue
             case .candidate(let endpoint):
-                return "candidate/" + endpoint.path
+                return "candidate" + endpoint.path
             }
         }
     }
@@ -48,11 +48,11 @@ class APIService {
         var path: String {
             switch self {
             case .base:
-                return "candidates"
+                return ""
             case .detail(let id):
-                return "\(id)"
+                return "/\(id)"
             case .favorite(let id):
-                return "\(id)/favorite"
+                return "/\(id)/favorite"
             }
         }
     }
@@ -71,53 +71,46 @@ class APIService {
         request.httpMethod = method.rawValue
         
         if includeToken, let token = token {
-                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            }
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         if let headers = headers {
             request.allHTTPHeaderFields = headers
         }
         
         if let body = body {
-                do {
-                    request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
-                } catch {
-                    print("Error serializing body: \(error)")
-                }
-            }
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-                    let result = self.treatResult(data: data, response: response, error: error)
-                    DispatchQueue.main.async {
-                        completion(result)
-                    }
-                }.resume()
-
-    }
-    
-    func treatResult(data: Data?, response: URLResponse?, error: Error?) -> Result<Data, Error> {
-            if let error = error {
-                print("Erreur lors de la requête : \(error.localizedDescription)")
-                return .failure(error)
-            }
-
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("La réponse n'est pas une HTTPURLResponse")
-                return .failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "La réponse n'est pas une HTTPURLResponse"]))
-            }
-
-            switch httpResponse.statusCode {
-            case 200...299:
-                guard let data = data else {
-                    print("Données reçues sont nulles.")
-                    return .failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Données reçues sont nulles."]))
-                }
-                return .success(data)
-
-            default:
-                let errorBody = data.flatMap { String(data: $0, encoding: .utf8) } ?? "Aucune réponse textuelle du serveur"
-                print("Status code pas bon: \(httpResponse.statusCode) - Réponse du serveur : \(errorBody)")
-                return .failure(NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorBody]))
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+            } catch {
+                print("Error serializing body: \(error)")
+                completion(.failure(error))
+                return
             }
         }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            let result = self.processResponse(data: data, response: response, error: error)
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }.resume()
+    }
+
+    func processResponse(data: Data?, response: URLResponse?, error: Error?) -> Result<Data, Error> {
+        if let error = error {
+            return .failure(error)
+        }
+
+        guard let httpResponse = response as? HTTPURLResponse, let data = data else {
+            return .failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response or data"]))
+        }
+
+        switch httpResponse.statusCode {
+        case 200...299:
+            return .success(data)
+        default:
+            let errorDescription = String(data: data, encoding: .utf8) ?? "No error description available"
+            return .failure(NSError(domain: "", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorDescription]))
+        }
+    }
 }

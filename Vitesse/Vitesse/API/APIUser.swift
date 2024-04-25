@@ -17,6 +17,8 @@ class APIUser {
                 do {
                     let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                     APIService.shared.updateSession(token: loginResponse.token, isAdmin: loginResponse.isAdmin)
+                    print("Login succeeded with token: \(loginResponse.token), isAdmin: \(loginResponse.isAdmin)")
+
                     completion(.success(true))
                 } catch {
                     completion(.failure(error))
@@ -31,20 +33,10 @@ class APIUser {
     func register(email: String, password: String, firstName: String, lastName: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let parameters = ["email": email, "password": password, "firstName": firstName, "lastName": lastName]
         
-        APIService.shared.createRequest(method: .post, endPoint: .user(.register),headers: ["Content-Type" : "application/json"], body: parameters) { result in
+        APIService.shared.createRequest(method: .post, endPoint: .user(.register), headers: ["Content-Type": "application/json"], body: parameters) { result in
             switch result {
             case .success(let data):
-                do {
-                    let response = try JSONDecoder().decode(RegisterResponse.self, from: data)
-                    if response.statusCode == 201 {
-                        completion(.success(true))
-                    } else{
-                        completion(.failure(NSError(domain: "", code: response.statusCode, userInfo: [NSLocalizedDescriptionKey: "Enregistrement échoué avec code: \(response.statusCode)"])))
-
-                    }
-                } catch  {
-                    completion(.failure(error))
-                }
+                    completion(.success(true))
             case .failure(let error):
                 completion(.failure(error))
             }

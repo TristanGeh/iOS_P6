@@ -8,12 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var email = ""
-    @State var password = ""
-    
-    @State var showLogin = false
+    @ObservedObject var viewModel = RegisterViewModel()
     
     let gradientStart = Color(red: 1/255, green: 152/255, blue: 117/255)
     let gradientEnd = Color(red: 221/255, green: 221/255, blue: 221/255).opacity(0.0)
@@ -31,32 +26,32 @@ struct RegisterView: View {
                     Text("Register").font(.largeTitle)
                     VStack(spacing: 10){
                         HStack {
-                            TextField("First Name", text: $firstName)
+                            TextField("First Name", text: $viewModel.firstName)
                                 .padding()
                                 .background(Color.white)
                                 .disableAutocorrection(true)
                                 .autocapitalization(.none)
                                 .cornerRadius(10)
-                            TextField("Last Name", text: $lastName)
+                            TextField("Last Name", text: $viewModel.lastName)
                                 .padding()
                                 .background(Color.white)
                                 .disableAutocorrection(true)
                                 .autocapitalization(.none)
                                 .cornerRadius(10)
                         }
-                        TextField("Email", text: $email)
+                        TextField("Email", text: $viewModel.email)
                             .padding()
                             .background(Color.white)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             .cornerRadius(10)
-                        SecureField("Password", text: $password)
+                        SecureField("Password", text: $viewModel.password)
                             .padding()
                             .background(Color.white)
                             .disableAutocorrection(true)
                             .autocapitalization(.none)
                             .cornerRadius(10)
-                        SecureField("Confirm Password", text: $password)
+                        SecureField("Confirm Password", text: $viewModel.confirmPassword)
                             .padding()
                             .background(Color.white)
                             .disableAutocorrection(true)
@@ -65,7 +60,7 @@ struct RegisterView: View {
                     }
                     .padding(.horizontal, 30)
                     Button(action: {
-                        showLogin = true
+                        viewModel.performRegister()
                     }, label: {
                         Text("Create")
                             .foregroundColor(.white)
@@ -74,7 +69,7 @@ struct RegisterView: View {
                             .background(Color("SignIn"))
                             .cornerRadius(8)
                     })
-                    .navigationDestination(isPresented: $showLogin){  LoginView()
+                    .navigationDestination(isPresented: $viewModel.isRegister){  LoginView(viewmodel: LoginViewModel())
                     }
                     .padding(.horizontal, 100)
                 }

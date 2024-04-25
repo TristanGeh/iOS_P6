@@ -11,7 +11,7 @@ class APICandidate {
     
     // MARK: - Fetch Candidate
     
-    func fetchCandidate(completion: @escaping (Result <[Candidate], Error>) -> Void) {
+    func fetchCandidates(completion: @escaping (Result <[Candidate], Error>) -> Void) {
         let headers = [
             "Content-Type": "application/json"
         ]
@@ -19,13 +19,21 @@ class APICandidate {
         APIService.shared.createRequest(method: .get, endPoint: .candidate(.base), headers: headers, includeToken: true) { result in
             switch result {
             case .success(let data):
+                print("Données brutes reçues: \(String(data: data, encoding: .utf8) ?? "Données non lisibles")")
+
                 do {
-                    let candidate = try JSONDecoder().decode([Candidate].self, from: data)
-                    completion(.success(candidate))
+                    let candidates = try JSONDecoder().decode([Candidate].self, from: data)
+                    print("Réussite de la récupération des candidats: \(candidates.count) candidats reçus.")
+
+                    completion(.success(candidates))
                 } catch {
+                    print("Erreur de décodage des candidats: \(error)")
+
                     completion(.failure(error))
                 }
             case .failure(let error):
+                print("Échec de la récupération des candidats: \(error.localizedDescription)")
+
                 completion(.failure(error))
             }
         }
@@ -74,7 +82,8 @@ class APICandidate {
             switch result {
             case .success(_):
                 //self.fetchCandidate()
-                print("Candidats chargés avec succès: \(candidates.count) candidats récupérés.")
+                return
+                //print("Candidats chargés avec succès: \(candidates.count) candidats récupérés.")
             case .failure(let error):
                 print("Erreur lors de la création du candidat: \(error.localizedDescription)")
             }
