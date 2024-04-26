@@ -58,10 +58,12 @@ struct CandidateDetailView: View {
                 }
                 Spacer()
                 Button(action: {
-                    viewModel.toggleFavorite(candidateId: viewModel.candidate.id)
+                    viewModel.toggleFavorite(candidateId: candidate.id)
                 }) {
-                    Image(systemName: viewModel.candidate.isFavorite ? "star.fill" : "star")
-                }            }
+                    Image(systemName: candidate.isFavorite ? "star.fill" : "star")
+                }
+                .disabled(viewModel.isAdmin)
+            }
             VStack(alignment:.leading, spacing: 12) {
                 Text("Phone")
                 if isEditingDetail {

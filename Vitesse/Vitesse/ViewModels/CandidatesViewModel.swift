@@ -79,11 +79,12 @@ class CandidatesViewModel: ObservableObject {
             print("Action non autorisée : L'utilisateur n'est pas administrateur")
             return
         }
-        let candidateIdString = candidateId.uuidString
+        let candidateIdString: String = candidateId.uuidString
         apiCandidate.handleFavoriteStatus(candidateId: candidateIdString) { result in
             switch result {
-            case .success():
-                self.candidate.isFavorite.toggle()
+            case .success(let success):
+                print("Statut de favoris mis à jour: \(success)")
+                //self.candidate.isFavorite.toggle()
                 print("Statut de favori mis à jour avec succès.")
             case .failure(let error):
                 print("Erreur lors de la mise à jour du statut de favori: \(error.localizedDescription)")

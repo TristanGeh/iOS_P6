@@ -143,19 +143,26 @@ class APICandidate {
     
     // MARK: - Handle Favorite Status
 
-    func handleFavoriteStatus(candidateId: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func handleFavoriteStatus(candidateId: String, completion: @escaping (Result<Candidate, Error>) -> Void) {
         let headers = ["Content-Type": "application/json"]
 
         APIService.shared.createRequest(method: .put, endPoint: .candidate(.favorite(candidateId)), headers: headers, includeToken: true, body: nil) { result in
             switch result {
-            case .success(_):
-                print("Statut de favori mis à jour avec succès.")
-                completion(.success(true))
+            case .success(let data):
+                do {
+                    let updatedFavorite = try JSONDecoder().decode(Candidate.self, from: data)
+                    print("Candidat mis à jour avec succès: \(updatedFavorite)")
+                    completion(.success(updatedFavorite))
+                } catch {
+                    print("Erreur lors de la décodage du candidat: \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
             case .failure(let error):
                 print("Erreur lors de la mise à jour du statut de favori: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
     }
+
 
 }
