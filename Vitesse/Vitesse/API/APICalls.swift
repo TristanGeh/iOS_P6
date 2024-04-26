@@ -16,23 +16,23 @@ struct RegisterResponse : Codable {
 }
 struct Candidate: Identifiable, Hashable, Codable {
     let id: UUID
-    let firstName: String
-    let lastName: String
-    let email: String
-    let phone: String?
-    let linkedinURL: String?
-    let note: String?
-    let isFavorite: Bool
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String?
+    var linkedinURL: String?
+    var note: String?
+    var isFavorite: Bool
 }
 struct CandidateDetail: Identifiable, Hashable, Codable {
     let id: UUID
-    let firstName: String
-    let lastName: String
-    let email: String
-    let phone: String?
-    let linkedinURL: String?
-    let note: String?
-    let isFavorite: Bool
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String?
+    var linkedinURL: String?
+    var note: String?
+    var isFavorite: Bool
 }
 
 class APICalls {

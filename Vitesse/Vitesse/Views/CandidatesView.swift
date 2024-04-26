@@ -13,13 +13,15 @@ struct CandidatesView: View {
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading){
-                CandidatesHeaderView(showFavorites: $viewModel.showFavorites)
+                CandidatesHeaderView(isEditing: $viewModel.isEditing, showFavorites: $viewModel.showFavorites)
                 CandidatesSearchBarView(searchText: $viewModel.searchText)
                 ScrollView{
                     VStack(alignment: .leading) {
                         Text("Candidats :")
                         ForEach(viewModel.searchResults, id: \.id) { candidate in
-                            CandidateTileView(candidate: candidate)
+                            CandidateTileView(candidate: candidate, isEditing: viewModel.isEditing) {
+                                viewModel.deleteCandidate(candidateId: candidate.id)
+                            }
                                 .padding(.vertical,8)
                         }
                     }

@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct CandidatesHeaderView: View {
+    @Binding var isEditing: Bool
     @Binding var showFavorites: Bool
     
     var body: some View {
         HStack{
-            EditButton()
+            Button(isEditing ? "Done" : "Edit"){
+                isEditing.toggle()
+            }
             Spacer()
             Text("Candidats")
                 .font(.title2)

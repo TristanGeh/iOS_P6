@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct CandidateLinkedInView: View {
+    
+    @ObservedObject var viewModel: CandidatesViewModel
+    @State private var isEditingDetail = false
+    @State private var linkedinUrl: String?
+    
     var candidate: Candidate
     
     var body: some View {
         HStack(spacing: 32) {
+            if isEditingDetail {
+                TextField("LinkedIn", text: Binding.nilCoalescing($linkedinUrl, defaultValue: " "))
+            }
             Text("LinkedIn")
             if let linkedinURL = candidate.linkedinURL, let url = URL(string: linkedinURL){
                 Link("Go on LinkedIn",destination: url)
@@ -25,6 +33,3 @@ struct CandidateLinkedInView: View {
     }
 }
 
-#Preview {
-    CandidateLinkedInView(candidate: Candidate(id: UUID(uuidString: "5662b03a-820e-4428-a301-8ac4da8ed0ae")!, firstName: "Jean-Pierre", lastName: "P", email: "jeanpierre@example.com", phone: "0123456789", linkedinURL: "https://www.linkedin.com/in/jeanpierre", note: "Très motivé", isFavorite: true))
-}

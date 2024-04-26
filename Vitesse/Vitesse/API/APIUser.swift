@@ -35,7 +35,7 @@ class APIUser {
         
         APIService.shared.createRequest(method: .post, endPoint: .user(.register), headers: ["Content-Type": "application/json"], body: parameters) { result in
             switch result {
-            case .success(let data):
+            case .success(_):
                     completion(.success(true))
             case .failure(let error):
                 completion(.failure(error))

@@ -41,7 +41,7 @@ class APICandidate {
     
     // MARK: - Fetch Candidate Details
     
-    func fetchCandidateDetails(candidateId: String, completion: @escaping (Result <CandidateDetail, Error>) -> Void)
+    func fetchCandidateDetails(candidateId: String, completion: @escaping (Result <Candidate, Error>) -> Void)
     {
         let headers = [
             "Content-Type": "application/json"
@@ -50,8 +50,8 @@ class APICandidate {
             switch result {
             case .success(let data):
                 do {
-                    let candidateDetail = try JSONDecoder().decode(CandidateDetail.self, from: data)
-                    completion(.success(candidateDetail))
+                    let candidate = try JSONDecoder().decode(Candidate.self, from: data)
+                    completion(.success(candidate))
                 } catch {
                     completion(.failure(error))
                 }
@@ -92,7 +92,7 @@ class APICandidate {
     
     // MARK: - Update Candidate
     
-    func updateCandidate(candidateId: String, email: String, note: String?, linkedinUrl: String?, firstName: String, lastName: String, phone: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func updateCandidate(candidateId: String, email: String, note: String?, linkedinUrl: String?, firstName: String, lastName: String, phone: String, completion: @escaping (Result<Candidate, Error>) -> Void) {
         
         let headers = ["Content-Type": "application/json"]
         var body: [String: Any] = [
@@ -108,26 +108,32 @@ class APICandidate {
         
         APIService.shared.createRequest(method: .put, endPoint: .candidate(.detail(candidateId)), headers: headers, includeToken: true, body: body) { result in
             switch result {
-            case .success(_):
-                print("Candidat mis à jour avec succès.")
-                completion(.success(true))
-            case .failure(let error):
-                print("Erreur lors de la mise à jour du candidat: \(error.localizedDescription)")
-                completion(.failure(error))
-            }
+                    case .success(let data):
+                        do {
+                            let updatedCandidate = try JSONDecoder().decode(Candidate.self, from: data)
+                            print("Candidat mis à jour avec succès: \(updatedCandidate)")
+                            completion(.success(updatedCandidate))
+                        } catch {
+                            print("Erreur lors de la décodage de la réponse: \(error)")
+                            completion(.failure(error))
+                        }
+                    case .failure(let error):
+                        print("Erreur lors de la mise à jour du candidat: \(error.localizedDescription)")
+                        completion(.failure(error))
+                    }
         }
     }
     
     // MARK: - Delete Candidate
     
-    func deleteCandidate(candidateId: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func deleteCandidate(candidateId: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let headers = ["Content-Type": "application/json"]
 
         APIService.shared.createRequest(method: .delete, endPoint: .candidate(.detail(candidateId)), headers: headers, includeToken: true, body: nil) { result in
             switch result {
             case .success(_):
                 print("Candidat supprimé avec succès.")
-                completion(.success(true))
+                completion(.success(()))
             case .failure(let error):
                 print("Erreur lors de la suppression du candidat: \(error.localizedDescription)")
                 completion(.failure(error))

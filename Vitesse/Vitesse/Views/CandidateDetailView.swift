@@ -8,33 +8,130 @@
 import SwiftUI
 
 struct CandidateDetailView: View {
-    var candidate: Candidate
+    @ObservedObject var viewModel: CandidatesViewModel
+    @State private var isEditingDetail = false
+    @State private var firstName: String
+    @State private var lastName: String
+    @State private var email: String
+    @State private var phone: String?
+    @State private var note: String?
+    @State private var linkedinUrl: String?
+
+        var candidate: Candidate
+        
+        init(candidate: Candidate) {
+            _viewModel = ObservedObject(wrappedValue: CandidatesViewModel())
+            self.candidate = candidate
+            _firstName = State(initialValue: candidate.firstName)
+            _lastName = State(initialValue: candidate.lastName)
+            _email = State(initialValue: candidate.email)
+            _phone = State(initialValue: candidate.phone)
+            _note = State(initialValue: candidate.note)
+            _linkedinUrl = State(initialValue: candidate.linkedinURL)
+        }
+
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 28){
             HStack {
-                Text(candidate.firstName + " " + candidate.lastName)
-                    .font(.title2)
+                if isEditingDetail {
+                    TextField("First Name", text: $firstName)
+                        .padding(5)
+                        .background(Color(white:0.95 ))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                        )
+                    TextField("Last Name", text: $lastName)
+                        .padding(5)
+                        .background(Color(white:0.95 ))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                        )
+                } else {
+                    Text(candidate.firstName + " " + candidate.lastName)
+                        .font(.title2)
+                }
                 Spacer()
-                Image(systemName: candidate.isFavorite ? "star.fill" : "star")
-            }
+                Button(action: {
+                    viewModel.toggleFavorite(candidateId: viewModel.candidate.id)
+                }) {
+                    Image(systemName: viewModel.candidate.isFavorite ? "star.fill" : "star")
+                }            }
             VStack(alignment:.leading, spacing: 12) {
                 Text("Phone")
-                Text("\(candidate.phone ?? "Not available")")
+                if isEditingDetail {
+                    TextField("Phone", text: Binding.nilCoalescing($phone, defaultValue: " "))
+                        .padding(5)
+                        .background(Color(white:0.95 ))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                        )
+                }else {
+                    Text("\(candidate.phone ?? "Not available")")
+                }
             }
             VStack(alignment:.leading, spacing: 12){
                 Text("Email")
-                Text("\(candidate.email)")
+                if isEditingDetail {
+                    TextField("email", text: $email)
+                        .padding(5)
+                        .background(Color(white:0.95 ))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                        )
+                }else {
+                    Text("\(candidate.email)")
+                }
+                
             }
-            CandidateLinkedInView(candidate: candidate)
+            HStack(spacing: 32) {
+                Text("LinkedIn")
+                if isEditingDetail {
+                    TextField("LinkedIn", text: Binding.nilCoalescing($linkedinUrl, defaultValue: " "))
+                        .padding(5)
+                        .background(Color(white:0.95 ))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                        )
+                } else {
+                    if let linkedinURL = candidate.linkedinURL, let url = URL(string: linkedinURL){
+                        Link("Go on LinkedIn",destination: url)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            .background(Color("SignIn"))
+                            .cornerRadius(8)
+                    }
+                }
+            }
             VStack(alignment:.leading, spacing: 12){
                 Text("Note")
                 VStack {
-                    Text("\(candidate.note ?? "Not available")")
-                        .lineLimit(nil)
-                        .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal,10)
-                        .padding(.vertical, 12)
+                   if isEditingDetail {
+                        TextField("Note", text: Binding.nilCoalescing($note, defaultValue: " "))
+                           .lineLimit(nil)
+                           .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
+                           .padding(.horizontal,10)
+                           .padding(.vertical, 12)
+                    }else {
+                        Text("\(candidate.note ?? "Not available")")
+                            .lineLimit(nil)
+                            .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal,10)
+                            .padding(.vertical, 12)
+                    }
+                    
                 }
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
@@ -44,12 +141,33 @@ struct CandidateDetailView: View {
         }
         .padding(.horizontal, 25)
         .toolbar{
-            EditButton()
+                Button(isEditingDetail ? "Save" : "Edit") {
+                        if isEditingDetail {
+                            let updatedCandidate = Candidate(
+                                id: candidate.id,
+                                firstName: firstName,
+                                lastName: lastName,
+                                email: email,
+                                phone: phone,
+                                linkedinURL: linkedinUrl,
+                                note: note,
+                                isFavorite: candidate.isFavorite
+                            )
+                            viewModel.saveChanges(candidate: updatedCandidate)
+                        }
+                isEditingDetail.toggle()
+            }
         }
         Spacer()
     }
 }
 
-#Preview {
-    CandidateDetailView(candidate: Candidate(id: UUID(uuidString: "5662b03a-820e-4428-a301-8ac4da8ed0ae")!, firstName: "Jean-Pierre", lastName: "P", email: "jeanpierre@example.com", phone: "0123456789", linkedinURL: "https://www.linkedin.com/in/jeanpierre", note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", isFavorite: true))
+struct CandidateDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        
+        let candidate = Candidate(id: UUID(uuidString: "5662b03a-820e-4428-a301-8ac4da8ed0ae")!, firstName: "Jean-Pierre", lastName: "P", email: "jeanpierre@example.com", phone: "0123456789", linkedinURL: "https://www.linkedin.com/in/jeanpierre", note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", isFavorite: true)
+        
+        CandidateDetailView( candidate: candidate)
+    }
 }
+
