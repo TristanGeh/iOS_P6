@@ -19,10 +19,10 @@ class RegisterViewModel: ObservableObject {
     
     func performRegister() {
         guard password == confirmPassword else {
-                    errorMessage = "Les mots de passe ne correspondent pas."
-                    print(errorMessage!)
-                    return
-                }
+            errorMessage = "Les mots de passe ne correspondent pas."
+            print(errorMessage!)
+            return
+        }
         errorMessage = nil
         
         apiUser.register(email: email, password: password, firstName: firstName, lastName: lastName) { result in

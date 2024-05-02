@@ -23,9 +23,9 @@ struct CandidatesView: View {
                                 viewModel.deleteCandidate(candidateId: candidate.id)
                             }
                             .onTapGesture {
-                                    viewModel.loadCandidateDetail(candidateId: candidate.id)
-                                }
-                                .padding(.vertical,8)
+                                viewModel.loadCandidateDetail(candidateId: candidate.id)
+                            }
+                            .padding(.vertical,8)
                         }
                     }
                     .padding()

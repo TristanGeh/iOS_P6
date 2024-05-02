@@ -15,9 +15,8 @@ class APIService {
     private(set) var token: String?
     private(set) var isAdmin: Bool?
     
-    func updateSession(token: String?, isAdmin: Bool?){
+    func updateSession(token: String?){
         self.token = token
-        self.isAdmin = isAdmin
     }
     
     enum EndPoint {
@@ -44,7 +43,7 @@ class APIService {
         case base
         case detail(String)
         case favorite(String)
-
+        
         var path: String {
             switch self {
             case .base:
@@ -95,16 +94,16 @@ class APIService {
             }
         }.resume()
     }
-
+    
     func processResponse(data: Data?, response: URLResponse?, error: Error?) -> Result<Data, Error> {
         if let error = error {
             return .failure(error)
         }
-
+        
         guard let httpResponse = response as? HTTPURLResponse, let data = data else {
             return .failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid response or data"]))
         }
-
+        
         switch httpResponse.statusCode {
         case 200...299:
             return .success(data)

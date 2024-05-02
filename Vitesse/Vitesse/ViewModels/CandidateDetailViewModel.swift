@@ -15,6 +15,15 @@ class CandidateDetailViewModel: ObservableObject {
     @Published var linkedinUrl: String = ""
     @Published var isFavorite: Bool = false
     
+    private var originalFirstName: String = ""
+    private var originalLastName: String = ""
+    private var originalEmail: String = ""
+    private var originalPhone: String = ""
+    private var originalNote: String = ""
+    private var originalLinkedinUrl: String = ""
+    private var originalIsFavorite: Bool = false
+    
+    
     @Published var errorMessage: String?
     private var apiCandidate = APICandidate()
     private var candidateId: UUID
@@ -48,7 +57,26 @@ class CandidateDetailViewModel: ObservableObject {
         note = candidate.note ?? ""
         linkedinUrl = candidate.linkedinURL ?? ""
         isFavorite = candidate.isFavorite
+        
+        originalFirstName = candidate.firstName
+        originalLastName = candidate.lastName
+        originalEmail = candidate.email
+        originalPhone = candidate.phone ?? ""
+        originalNote = candidate.note ?? ""
+        originalLinkedinUrl = candidate.linkedinURL ?? ""
+        originalIsFavorite = candidate.isFavorite
     }
+    
+    func resetCandidateToOriginal() {
+        firstName = originalFirstName
+        lastName = originalLastName
+        email = originalEmail
+        phone = originalPhone
+        note = originalNote
+        linkedinUrl = originalLinkedinUrl
+        isFavorite = originalIsFavorite
+    }
+    
     
     func saveCandidate() {
         apiCandidate.updateCandidate(candidateId: candidateId.uuidString,
@@ -71,6 +99,7 @@ class CandidateDetailViewModel: ObservableObject {
     func toggleFavorite() {
         guard isAdmin else {
             print("Action non autorisée : L'utilisateur n'est pas administrateur")
+            print("\(isAdmin)")
             return
         }
         isFavorite.toggle()

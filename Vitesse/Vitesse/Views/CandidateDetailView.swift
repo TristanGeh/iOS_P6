@@ -12,6 +12,7 @@ import SwiftUI
 struct CandidateDetailView: View {
     @ObservedObject var viewModel: CandidateDetailViewModel
     @State private var isEditingDetail = false
+    @State private var sendChanges = false
     
     init(viewModel: CandidateDetailViewModel) {
         self.viewModel = viewModel
@@ -48,7 +49,7 @@ struct CandidateDetailView: View {
                 }) {
                     Image(systemName: viewModel.isFavorite ? "star.fill" : "star")
                 }
-                .disabled(viewModel.isAdmin)
+                .disabled(!viewModel.isAdmin)
             }
             VStack(alignment:.leading, spacing: 12) {
                 Text("Phone")
@@ -127,14 +128,38 @@ struct CandidateDetailView: View {
                         .stroke(.black, lineWidth: 1)
                 )
             }
+            VStack(alignment:.leading, spacing: 20) {
+                if isEditingDetail {
+                    Button("Save") {
+                        isEditingDetail = false
+                        sendChanges = true
+                        print("Editing: \(isEditingDetail) Changes: \(sendChanges)")
+                        if sendChanges {
+                            print("Editing: \(isEditingDetail) Changes: \(sendChanges)")
+                            viewModel.saveCandidate()
+                            sendChanges = false
+                        }
+                    }
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
+                    .background(Color("SignIn"))
+                    .cornerRadius(8)
+                }
+                
+            }
         }
         .padding(.horizontal, 25)
-        .toolbar{
-            Button(isEditingDetail ? "Save" : "Edit") {
-                if isEditingDetail {
-                    viewModel.saveCandidate()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(isEditingDetail ? "Cancel" : "Edit") {
+                    if isEditingDetail {
+                        viewModel.resetCandidateToOriginal()
+                    }
+                    print("Editing: \(isEditingDetail) Changes: \(sendChanges)")
+                    isEditingDetail.toggle()
                 }
-                isEditingDetail.toggle()
             }
         }
         Spacer()

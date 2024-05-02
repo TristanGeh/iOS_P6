@@ -16,9 +16,9 @@ struct LoginView: View {
     let gradientEnd = Color(red: 221/255, green: 221/255, blue: 221/255).opacity(0.0)
     
     init(viewmodel: LoginViewModel) {
-            self.viewmodel = viewmodel
-            UINavigationBar.appearance().tintColor = .white
-        }
+        self.viewmodel = viewmodel
+        UINavigationBar.appearance().tintColor = .white
+    }
     
     var body: some View {
         

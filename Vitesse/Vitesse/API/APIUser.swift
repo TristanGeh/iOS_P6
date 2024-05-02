@@ -16,8 +16,9 @@ class APIUser {
             case .success(let data):
                 do {
                     let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-                    APIService.shared.updateSession(token: loginResponse.token, isAdmin: loginResponse.isAdmin)
-                    print("Login succeeded with token: \(loginResponse.token), isAdmin: \(loginResponse.isAdmin)")
+                    APIService.shared.updateSession(token: loginResponse.token)
+                    LoginModel.shared.handleLoginResponse(loginResponse)
+                    print("Login succeeded with token: \(loginResponse.token), isAdmin: \(LoginModel.shared.isAdmin)")
 
                     completion(.success(true))
                 } catch {
