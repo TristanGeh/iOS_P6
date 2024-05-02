@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CandidateLinkedInView: View {
     
-    @ObservedObject var viewModel: CandidatesViewModel
+    @ObservedObject var viewModel: CandidateDetailViewModel
     @State private var isEditingDetail = false
     @State private var linkedinUrl: String?
     
@@ -18,7 +18,7 @@ struct CandidateLinkedInView: View {
     var body: some View {
         HStack(spacing: 32) {
             if isEditingDetail {
-                TextField("LinkedIn", text: Binding.nilCoalescing($linkedinUrl, defaultValue: " "))
+                TextField("LinkedIn", text: $viewModel.linkedinUrl)
             }
             Text("LinkedIn")
             if let linkedinURL = candidate.linkedinURL, let url = URL(string: linkedinURL){

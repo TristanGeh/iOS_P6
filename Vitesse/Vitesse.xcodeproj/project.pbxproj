@@ -18,6 +18,7 @@
 		E083BC3E2BAC9C2A00D6BAD7 /* CandidateDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC3D2BAC9C2A00D6BAD7 /* CandidateDetailView.swift */; };
 		E083BC432BAC9F3500D6BAD7 /* CandidatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */; };
 		E083BC4C2BB46BC800D6BAD7 /* CandidateLinkedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */; };
+		E09F52472BE294570064A513 /* CandidateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09F52462BE294570064A513 /* CandidateDetailViewModel.swift */; };
 		E0A2007F2BD9C6EE0085BE53 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A2007E2BD9C6EE0085BE53 /* LoginViewModel.swift */; };
 		E0A200812BDA042A0085BE53 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A200802BDA042A0085BE53 /* RegisterViewModel.swift */; };
 		E0A200832BDB585E0085BE53 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A200822BDB585E0085BE53 /* BindingExtension.swift */; };
@@ -42,6 +43,7 @@
 		E083BC3D2BAC9C2A00D6BAD7 /* CandidateDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailView.swift; sourceTree = "<group>"; };
 		E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesViewModel.swift; sourceTree = "<group>"; };
 		E083BC4B2BB46BC800D6BAD7 /* CandidateLinkedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateLinkedInView.swift; sourceTree = "<group>"; };
+		E09F52462BE294570064A513 /* CandidateDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateDetailViewModel.swift; sourceTree = "<group>"; };
 		E0A2007E2BD9C6EE0085BE53 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E0A200802BDA042A0085BE53 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		E0A200822BDB585E0085BE53 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				E083BC422BAC9F3500D6BAD7 /* CandidatesViewModel.swift */,
 				E0A200802BDA042A0085BE53 /* RegisterViewModel.swift */,
 				E0A2007E2BD9C6EE0085BE53 /* LoginViewModel.swift */,
+				E09F52462BE294570064A513 /* CandidateDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B59CBD2BC8345B00471B1F /* APIService.swift in Sources */,
+				E09F52472BE294570064A513 /* CandidateDetailViewModel.swift in Sources */,
 				E083BC332BAC439500D6BAD7 /* RegisterView.swift in Sources */,
 				E083BC302BAAF95900D6BAD7 /* LoginView.swift in Sources */,
 				E0B59CBB2BC8343E00471B1F /* APICalls.swift in Sources */,

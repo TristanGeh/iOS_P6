@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Foundation
+
 class APICandidate {
     
     // MARK: - Fetch Candidate
@@ -41,7 +43,7 @@ class APICandidate {
     
     // MARK: - Fetch Candidate Details
     
-    func fetchCandidateDetails(candidateId: String, completion: @escaping (Result <Candidate, Error>) -> Void)
+    func fetchCandidateDetails(candidateId: String, completion: @escaping (Result <CandidateDetail, Error>) -> Void)
     {
         let headers = [
             "Content-Type": "application/json"
@@ -50,7 +52,7 @@ class APICandidate {
             switch result {
             case .success(let data):
                 do {
-                    let candidate = try JSONDecoder().decode(Candidate.self, from: data)
+                    let candidate = try JSONDecoder().decode(CandidateDetail.self, from: data)
                     completion(.success(candidate))
                 } catch {
                     completion(.failure(error))
@@ -92,7 +94,7 @@ class APICandidate {
     
     // MARK: - Update Candidate
     
-    func updateCandidate(candidateId: String, email: String, note: String?, linkedinUrl: String?, firstName: String, lastName: String, phone: String, completion: @escaping (Result<Candidate, Error>) -> Void) {
+    func updateCandidate(candidateId: String, email: String, note: String?, linkedinUrl: String?, firstName: String, lastName: String, phone: String, completion: @escaping (Result<CandidateDetail, Error>) -> Void) {
         
         let headers = ["Content-Type": "application/json"]
         var body: [String: Any] = [
@@ -110,7 +112,7 @@ class APICandidate {
             switch result {
                     case .success(let data):
                         do {
-                            let updatedCandidate = try JSONDecoder().decode(Candidate.self, from: data)
+                            let updatedCandidate = try JSONDecoder().decode(CandidateDetail.self, from: data)
                             print("Candidat mis à jour avec succès: \(updatedCandidate)")
                             completion(.success(updatedCandidate))
                         } catch {
@@ -146,7 +148,7 @@ class APICandidate {
     func handleFavoriteStatus(candidateId: String, completion: @escaping (Result<Candidate, Error>) -> Void) {
         let headers = ["Content-Type": "application/json"]
 
-        APIService.shared.createRequest(method: .put, endPoint: .candidate(.favorite(candidateId)), headers: headers, includeToken: true, body: nil) { result in
+        APIService.shared.createRequest(method: .post, endPoint: .candidate(.favorite(candidateId)), headers: headers, includeToken: true, body: nil) { result in
             switch result {
             case .success(let data):
                 do {
@@ -166,3 +168,4 @@ class APICandidate {
 
 
 }
+

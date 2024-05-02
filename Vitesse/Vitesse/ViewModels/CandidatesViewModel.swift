@@ -9,15 +9,11 @@ import Foundation
 
 class CandidatesViewModel: ObservableObject {
     @Published var candidates = [Candidate]()
-    @Published var detailedCandidate: Candidate?
+    @Published var detailedCandidate: CandidateDetail?
     
     @Published var searchText: String = ""
     @Published var showFavorites: Bool = false
     @Published var isEditing: Bool = false
-    
-    var isAdmin: Bool {
-        LoginModel.shared.isAdmin
-    }
     
     private var apiCandidate = APICandidate()
     
@@ -56,41 +52,16 @@ class CandidatesViewModel: ObservableObject {
         }
     }
     
-    func saveChanges(candidate: Candidate) {
-        let candidateIdString = candidate.id.uuidString
-        apiCandidate.updateCandidate(candidateId: candidateIdString,
-                                     email: candidate.email,
-                                     note: candidate.note ?? "",
-                                     linkedinUrl: candidate.linkedinURL ?? "",
-                                     firstName: candidate.firstName,
-                                     lastName: candidate.lastName,
-                                     phone: candidate.phone ?? "") { result in
+    func loadCandidateDetail(candidateId: UUID) {
+        let candidateIdString = candidateId.uuidString
+        apiCandidate.fetchCandidateDetails(candidateId: candidateIdString) { result in
             switch result {
-            case .success(let success):
-                print("Update successful: \(success)")
+            case .success(_):
+                print("Candidat chargé avec succés")
             case .failure(let error):
-                print("Error updating candidate: \(error)")
+                print("Erreur du chargement d'un candidat:\(error)")
             }
         }
-    }
-    
-    func toggleFavorite(candidateId: UUID) {
-        guard isAdmin else {
-            print("Action non autorisée : L'utilisateur n'est pas administrateur")
-            return
-        }
-        let candidateIdString: String = candidateId.uuidString
-        apiCandidate.handleFavoriteStatus(candidateId: candidateIdString) { result in
-            switch result {
-            case .success(let success):
-                print("Statut de favoris mis à jour: \(success)")
-                //self.candidate.isFavorite.toggle()
-                print("Statut de favori mis à jour avec succès.")
-            case .failure(let error):
-                print("Erreur lors de la mise à jour du statut de favori: \(error.localizedDescription)")
-            }
-        }
-
     }
 }
 

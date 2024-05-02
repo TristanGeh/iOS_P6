@@ -12,8 +12,15 @@ struct CandidateTileView: View {
     var isEditing: Bool
     var onDelete: () -> Void
     
+    @StateObject var viewModel = CandidatesViewModel()
+    @State private var candidateDetail: CandidateDetail?
+    @State private var isActive: Bool = false
+    
     var body: some View {
-        NavigationLink(value: candidate) {
+        NavigationLink(
+            destination: CandidateDetailView(viewModel: CandidateDetailViewModel(candidateId: candidate.id)),
+            isActive: $isActive
+        ) {
             HStack {
                 VStack(alignment: .leading) {
                     Text(candidate.firstName)
@@ -37,12 +44,12 @@ struct CandidateTileView: View {
                 }
                 
                 if isEditing {
-                                Button(action: onDelete) {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(.red)
-                                }
-                                .padding(.trailing, 20)
-                            }
+                    Button(action: onDelete) {
+                        Image(systemName: "trash")
+                            .foregroundColor(.red)
+                    }
+                    .padding(.trailing, 20)
+                }
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 14)
@@ -50,8 +57,9 @@ struct CandidateTileView: View {
             .cornerRadius(8.0)
             .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 5, y: 6)
         }
-        .navigationDestination(for: Candidate.self) { candidate in
-            CandidateDetailView(candidate: candidate)
+        .onTapGesture {
+            isActive = true
+            viewModel.loadCandidateDetail(candidateId: candidate.id)
         }
     }
 }

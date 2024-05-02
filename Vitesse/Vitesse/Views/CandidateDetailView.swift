@@ -7,107 +7,94 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct CandidateDetailView: View {
-    @ObservedObject var viewModel: CandidatesViewModel
+    @ObservedObject var viewModel: CandidateDetailViewModel
     @State private var isEditingDetail = false
-    @State private var firstName: String
-    @State private var lastName: String
-    @State private var email: String
-    @State private var phone: String?
-    @State private var note: String?
-    @State private var linkedinUrl: String?
-
-        var candidate: Candidate
-        
-        init(candidate: Candidate) {
-            _viewModel = ObservedObject(wrappedValue: CandidatesViewModel())
-            self.candidate = candidate
-            _firstName = State(initialValue: candidate.firstName)
-            _lastName = State(initialValue: candidate.lastName)
-            _email = State(initialValue: candidate.email)
-            _phone = State(initialValue: candidate.phone)
-            _note = State(initialValue: candidate.note)
-            _linkedinUrl = State(initialValue: candidate.linkedinURL)
-        }
-
+    
+    init(viewModel: CandidateDetailViewModel) {
+        self.viewModel = viewModel
+    }
     
     
     var body: some View {
         VStack(alignment: .leading, spacing: 28){
             HStack {
                 if isEditingDetail {
-                    TextField("First Name", text: $firstName)
+                    TextField("First Name", text: $viewModel.firstName)
                         .padding(5)
                         .background(Color(white:0.95 ))
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1)
+                                .stroke(Color.black, lineWidth: 1)
                         )
-                    TextField("Last Name", text: $lastName)
+                    TextField("Last Name", text: $viewModel.lastName)
                         .padding(5)
                         .background(Color(white:0.95 ))
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1)
+                                .stroke(Color.black, lineWidth: 1)
                         )
                 } else {
-                    Text(candidate.firstName + " " + candidate.lastName)
+                    Text(viewModel.firstName + " " + viewModel.lastName)
                         .font(.title2)
                 }
                 Spacer()
                 Button(action: {
-                    viewModel.toggleFavorite(candidateId: candidate.id)
+                    viewModel.toggleFavorite()
                 }) {
-                    Image(systemName: candidate.isFavorite ? "star.fill" : "star")
+                    Image(systemName: viewModel.isFavorite ? "star.fill" : "star")
                 }
                 .disabled(viewModel.isAdmin)
             }
             VStack(alignment:.leading, spacing: 12) {
                 Text("Phone")
                 if isEditingDetail {
-                    TextField("Phone", text: Binding.nilCoalescing($phone, defaultValue: " "))
+                    TextField("Phone", text: $viewModel.phone)
+                    
                         .padding(5)
                         .background(Color(white:0.95 ))
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1)
+                                .stroke(Color.black, lineWidth: 1)
                         )
                 }else {
-                    Text("\(candidate.phone ?? "Not available")")
+                    Text("\(viewModel.phone ?? "Not available")")
                 }
             }
             VStack(alignment:.leading, spacing: 12){
                 Text("Email")
                 if isEditingDetail {
-                    TextField("email", text: $email)
+                    TextField("email", text: $viewModel.email)
                         .padding(5)
                         .background(Color(white:0.95 ))
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1)
+                                .stroke(Color.black, lineWidth: 1)
                         )
                 }else {
-                    Text("\(candidate.email)")
+                    Text("\(viewModel.email)")
                 }
                 
             }
             HStack(spacing: 32) {
                 Text("LinkedIn")
                 if isEditingDetail {
-                    TextField("LinkedIn", text: Binding.nilCoalescing($linkedinUrl, defaultValue: " "))
+                    TextField("LinkedIn", text: $viewModel.linkedinUrl)
                         .padding(5)
                         .background(Color(white:0.95 ))
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 1)
+                                .stroke(Color.black, lineWidth: 1)
                         )
                 } else {
-                    if let linkedinURL = candidate.linkedinURL, let url = URL(string: linkedinURL){
+                    if let url = URL(string: viewModel.linkedinUrl), UIApplication.shared.canOpenURL(url){
                         Link("Go on LinkedIn",destination: url)
                             .foregroundColor(.white)
                             .padding(.horizontal, 20)
@@ -120,14 +107,14 @@ struct CandidateDetailView: View {
             VStack(alignment:.leading, spacing: 12){
                 Text("Note")
                 VStack {
-                   if isEditingDetail {
-                        TextField("Note", text: Binding.nilCoalescing($note, defaultValue: " "))
-                           .lineLimit(nil)
-                           .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
-                           .padding(.horizontal,10)
-                           .padding(.vertical, 12)
+                    if isEditingDetail {
+                        TextField("Note", text: $viewModel.note)
+                            .lineLimit(nil)
+                            .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal,10)
+                            .padding(.vertical, 12)
                     }else {
-                        Text("\(candidate.note ?? "Not available")")
+                        Text("\(viewModel.note ?? "Not available")")
                             .lineLimit(nil)
                             .frame(minWidth: 0,maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal,10)
@@ -143,33 +130,20 @@ struct CandidateDetailView: View {
         }
         .padding(.horizontal, 25)
         .toolbar{
-                Button(isEditingDetail ? "Save" : "Edit") {
-                        if isEditingDetail {
-                            let updatedCandidate = Candidate(
-                                id: candidate.id,
-                                firstName: firstName,
-                                lastName: lastName,
-                                email: email,
-                                phone: phone,
-                                linkedinURL: linkedinUrl,
-                                note: note,
-                                isFavorite: candidate.isFavorite
-                            )
-                            viewModel.saveChanges(candidate: updatedCandidate)
-                        }
+            Button(isEditingDetail ? "Save" : "Edit") {
+                if isEditingDetail {
+                    viewModel.saveCandidate()
+                }
                 isEditingDetail.toggle()
             }
         }
         Spacer()
+            .onAppear {
+                viewModel.loadCandidateDetails()
+            }
     }
 }
 
-struct CandidateDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let candidate = Candidate(id: UUID(uuidString: "5662b03a-820e-4428-a301-8ac4da8ed0ae")!, firstName: "Jean-Pierre", lastName: "P", email: "jeanpierre@example.com", phone: "0123456789", linkedinURL: "https://www.linkedin.com/in/jeanpierre", note: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", isFavorite: true)
-        
-        CandidateDetailView( candidate: candidate)
-    }
-}
+
+
 

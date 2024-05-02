@@ -22,6 +22,9 @@ struct CandidatesView: View {
                             CandidateTileView(candidate: candidate, isEditing: viewModel.isEditing) {
                                 viewModel.deleteCandidate(candidateId: candidate.id)
                             }
+                            .onTapGesture {
+                                    viewModel.loadCandidateDetail(candidateId: candidate.id)
+                                }
                                 .padding(.vertical,8)
                         }
                     }
